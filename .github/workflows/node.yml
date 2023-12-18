@@ -60,12 +60,3 @@ jobs:
             sh "cat temp-taskdef.json"
             sh "aws ecs register-task-definition --cli-input-json file://temp-taskdef.json"
             sh "aws ecs update-service --cluster  ${ECS_CLUSTER_NAME} --service  ${ECS_SERVICE_NAME} --task-definition  ${TASKDEF_NAME}"
-          wait-for-service-stability: true
-          
-
-      # - name: Deploy Amazon ECS task definition
-      #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      #   with:
-      #     task-definition: ${{ steps.task-def.outputs.task-definition }}
-      #     service: ${{ env.ECS_SERVICE_NAME }}
-      #     cluster: ${{ env.ECS_CLUSTER_NAME }}
