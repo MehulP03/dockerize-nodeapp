@@ -9,8 +9,8 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}   
   AWS_REGION: 'ap-northeast-1'                   # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: dockerize-nodeapp           # set this to your Amazon ECR repository name
-  ECS_SERVICE_NAME: ecs-service                 # set this to your Amazon ECS service name
-  ECS_CLUSTER_NAME: ecs-cluster                 # set this to your Amazon ECS cluster name
+  ECS_SERVICE_NAME: ecs_service                 # set this to your Amazon ECS service name
+  ECS_CLUSTER_NAME: ecs_cluster                 # set this to your Amazon ECS cluster name
   # TASKDEF_NAME: ecs-task-def
   
 jobs:
@@ -58,7 +58,6 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          run:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE_NAME }}
           cluster: ${{ env.ECS_CLUSTER_NAME }}
