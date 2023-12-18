@@ -11,7 +11,7 @@ env:
   ECR_REPOSITORY: dockerize-nodeapp           # set this to your Amazon ECR repository name
   ECS_SERVICE_NAME: ecs-service                 # set this to your Amazon ECS service name
   ECS_CLUSTER_NAME: ecs-cluster                 # set this to your Amazon ECS cluster name
-  TASKDEF_NAME: ecs-task-def
+  # TASKDEF_NAME: ecs-task-def
   
 jobs:
   deploy:
@@ -51,7 +51,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           run: 
-          task-definition: ecs-task-def.json
+          task-definition: ecs-task-def-revision3.json
           container-name: dockerize-nodeapp
           image: ${{ steps.build-image.outputs.image }} 
 
